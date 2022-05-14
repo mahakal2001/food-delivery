@@ -1,0 +1,54 @@
+<div class="row" style="justify-content: center;display: flex;">
+
+    {{#if hasOrder}}
+    <div style="justify-content: center;display: flex; flex-direction: column; width: 50%">
+        <h2 style="justify-content: center;display: flex;"><a>My Orders</a></h2>
+        {{# each orders }}
+            <div class="panel panel-info">
+                <div class="panel-heading">Order Date: {{ this.dateTime }}</div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {{# each this.items }}
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-2 cartItemCol" style="margin-right: 15px;"> <img src="{{ this.item.imagePath }}" alt="..." class="img-responsive" style="height: 60px;width: 80px;"></div>
+                                    <div class="col-md-9 cartItemCol">
+                                        <div class="row ">
+                                            <div class="col-md-10" style="padding-left: 6px">
+                                                <span style="font-weight: bold;" >{{this.item.title}} </span>
+                                            </div>
+                                            <div class="col-md-1" style="padding-left: 0px" >
+                                                <span class="badge">{{this.qty}}</span>
+                                            </div>
+                                            <div class="col-md-1" style="padding-left: 0px" >
+                                                <span class="label label-success">&#8377;{{this.price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <strong>Total Price: &#8377;{{ this.cart.totalPrice }}</strong>
+                    <span class="label label-warning pull-right" style="padding: 5px">{{this.paymentMode}}</span>
+                </div>
+            </div>
+
+
+
+        {{/each}}
+    </div>
+
+    {{else}}
+        <div class="orderEmpty">
+            <div id="cutleryIcon"><i class="fa fa-cutlery" aria-hidden="true"></i></div>
+            <div style="margin-bottom: 10px">Your have not placed any order yet!.</div>
+            <a href="/" type="button" class="btn btn-danger">Browse Food</a>
+        </div>
+    {{/if}}
+
+
+</div>
